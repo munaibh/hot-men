@@ -3,6 +3,7 @@ const PORT = process.env.PORT || 8080
 
 let currentApp = require('./server').default
 let server = http.createServer(currentApp).listen(PORT, function () {
+  if(process.env.NODE_ENV !== 'production') return
   console.info(`Server started on: http://localhost:${PORT}`)
 })
 
