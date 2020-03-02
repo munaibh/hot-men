@@ -36,13 +36,15 @@ module.exports = (env, argv) => {
     stats: 'errors-only',
     plugins: [
       new CleanWebpackPlugin(),
-      new webpack.HotModuleReplacementPlugin(),
-      new WebpackShellPlugin({ onBuildEnd: { scripts, parallel: true } }),
-      new FriendlyErrorsPlugin({
-        compilationSuccessInfo: {
-          messages: ['Ready to rock! http://localhost:8080'],
-        },
-      }),
+      ...env.production ? []: [
+        new webpack.HotModuleReplacementPlugin(),
+        new WebpackShellPlugin({ onBuildEnd: { scripts, parallel: true } }),
+        new FriendlyErrorsPlugin({
+          compilationSuccessInfo: {
+            messages: ['Ready to rock! http://localhost:8080'],
+          },
+        }),
+      ],
     ],
   }
 }
