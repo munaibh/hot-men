@@ -17,7 +17,9 @@ module.exports = (env, _argv) => {
     externals: externals,
     output: {
       path: path.resolve(__dirname, '..', 'build'),
-      filename: 'server.js'
+      filename: 'server.js',
+      hotUpdateChunkFilename: '.hot/[id].[hash].hot-update.js',
+      hotUpdateMainFilename: '.hot/[hash].hot-update.json'
     },
     module: {
       rules: [{
