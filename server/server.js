@@ -1,5 +1,5 @@
-const express = require('express')
-const path = require('path')
+import express from 'express'
+import path from 'path'
 
 const app = express()
 
@@ -11,4 +11,4 @@ app.get('/', (req, res, next) => {
   res.render('index')
 })
 
-module.exports = app
+export default app
