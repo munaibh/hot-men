@@ -22,7 +22,8 @@
     "friendly-errors-webpack-plugin": "^1.7.0",
     "webpack": "^4.41.2",
     "webpack-cli": "^3.3.10",
-    "webpack-node-externals": "^1.7.2"
+    "webpack-node-externals": "^1.7.2",
+    "webpack-shell-plugin-next": "^1.1.1"
   },
   "author": "Munaib Hussain",
   "license": "ISC"

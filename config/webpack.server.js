@@ -3,10 +3,12 @@ const path = require('path')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const nodeExternals = require('webpack-node-externals')
 const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin')
+const WebpackShellPlugin = require('webpack-shell-plugin-next')
 
 module.exports = (env, _argv) => {
   const environment = env.production ? 'production' : 'development'
   const entries = env.production ? [] : ['webpack/hot/poll?1000']
+  const scripts = [`node ./build/server.js`]
   const externals = nodeExternals({ whitelist: entries })
 
   return {
@@ -34,6 +36,7 @@ module.exports = (env, _argv) => {
     plugins: [
       new CleanWebpackPlugin(),
       new webpack.HotModuleReplacementPlugin(),
+      new WebpackShellPlugin({ onBuildEnd: { scripts, parallel: true } }),
       new FriendlyErrorsPlugin({
         compilationSuccessInfo: {
           messages: ['Ready to rock! http://localhost:8080'],
