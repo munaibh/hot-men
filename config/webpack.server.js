@@ -5,10 +5,11 @@ const nodeExternals = require('webpack-node-externals')
 const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin')
 const WebpackShellPlugin = require('webpack-shell-plugin-next')
 
-module.exports = (env, _argv) => {
+module.exports = (env, argv) => {
   const environment = env.production ? 'production' : 'development'
   const entries = env.production ? [] : ['webpack/hot/poll?1000']
-  const scripts = [`node ./build/server.js`]
+  const inspect = argv.includes('--inspect') ? ' --inspect' : ''
+  const scripts = [`node ${inspect} ./build/server.js`]
   const externals = nodeExternals({ whitelist: entries })
 
   return {
