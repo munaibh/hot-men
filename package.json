@@ -7,7 +7,7 @@
     "start": "node build/server.js",
     "serve": "npm run build:server",
     "debug": "npm run build:server -- --inspect",
-    "build": "npm run build:server -- --env.production'",
+    "build": "npm run build:server -- --env.production",
     "build:server": "webpack --config ./config/webpack.config.js --env.target=server"
   },
   "dependencies": {
