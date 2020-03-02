@@ -11,4 +11,9 @@ app.get('/', (req, res, next) => {
   res.render('index')
 })
 
+if(process.env.NODE_ENV === 'development') {
+  const watcher = require('../config/plugins/HotLoader/watcher')
+  watcher.client(app)
+}
+
 export default app
