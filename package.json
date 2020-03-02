@@ -2,14 +2,23 @@
   "name": "hot-men",
   "version": "0.0.1",
   "description": "",
-  "main": "index.js",
+  "main": "build/server.js",
   "scripts": {
-    "start": "node server"
+    "start": "node build/server.js",
+    "build": "webpack --config ./config/webpack.config.js --env.target=server"
   },
   "dependencies": {
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "pug": "^2.0.4"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.7.2",
+    "@babel/preset-env": "^7.7.1",
+    "babel-loader": "^8.0.6",
+    "webpack": "^4.41.2",
+    "webpack-cli": "^3.3.10",
+    "webpack-node-externals": "^1.7.2"
   },
   "author": "Munaib Hussain",
   "license": "ISC"
