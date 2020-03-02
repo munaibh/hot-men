@@ -9,7 +9,7 @@ module.exports = (env, _argv) => {
   const entries = env.production ? [] : ['./config/plugins/HotLoader/subscribe']
   const filename = env.production ? '[name].[contenthash:8]' : '[name]'
   const extract = { loader: MiniCssExtractPlugin.loader, options: { hmr: !env.production } }
-  const cleanWhiteList = ['!favicon.ico']
+  const cleanWhiteList = ['!favicon.png']
 
   return {
     mode: environment,
