@@ -6,13 +6,14 @@ const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin')
 
 module.exports = (env, _argv) => {
   const environment = env.production ? 'production' : 'development'
+  const entries = env.production ? [] : ['./config/plugins/HotLoader/subscribe']
   const filename = env.production ? '[name].[contenthash:8]' : '[name]'
   const extract = { loader: MiniCssExtractPlugin.loader, options: { hmr: !env.production } }
   const cleanWhiteList = ['!favicon.ico']
 
   return {
     mode: environment,
-    entry: ['./client/index' ],
+    entry: [...entries, './client/index' ],
     output: {
       path: path.resolve(__dirname, '..', "public"),
       publicPath: '/',

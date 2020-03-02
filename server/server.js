@@ -13,6 +13,7 @@ app.get('/', (req, res, next) => {
 
 if(process.env.NODE_ENV === 'development') {
   const watcher = require('../config/plugins/HotLoader/watcher')
+  watcher.static()
   watcher.client(app)
 }
 
