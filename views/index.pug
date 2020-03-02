@@ -5,7 +5,7 @@ html(lang="en")
     meta(name="viewport", content="width=device-width, initial-scale=1.0")
     link(rel="icon", href="favicon.png", type="image/png")
     title Hot MEN
-    link(rel="stylesheet", href="/styles/main.css")
+    link(rel="stylesheet", href=`${asset('/styles/main.css')}`)
   body
     h1 Hello World
-    script(src="/scripts/main.js")
+    script(src=`${asset('/scripts/main.js')}`)
