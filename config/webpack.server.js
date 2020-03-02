@@ -38,6 +38,7 @@ module.exports = (env, argv) => {
       new CleanWebpackPlugin(),
       ...env.production ? []: [
         new webpack.HotModuleReplacementPlugin(),
+        new webpack.NoEmitOnErrorsPlugin(),
         new WebpackShellPlugin({ onBuildEnd: { scripts, parallel: true } }),
         new FriendlyErrorsPlugin({
           compilationSuccessInfo: {
