@@ -5,7 +5,9 @@
   "main": "build/server.js",
   "scripts": {
     "start": "node build/server.js",
-    "build": "webpack --config ./config/webpack.config.js --env.target=server"
+    "serve": "npm run build:server",
+    "build": "npm run build:server -- --env.production'",
+    "build:server": "webpack --config ./config/webpack.config.js --env.target=server"
   },
   "dependencies": {
     "dotenv": "^8.2.0",

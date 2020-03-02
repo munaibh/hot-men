@@ -4,14 +4,16 @@ const nodeExternals = require('webpack-node-externals')
 
 module.exports = (env, _argv) => {
   const environment = env.production ? 'production' : 'development'
-  const externals = nodeExternals()
+  const entries = env.production ? [] : ['webpack/hot/poll?1000']
+  const externals = nodeExternals({ whitelist: entries })
 
   return {
     mode: environment,
     devtool: 'cheap-source-map',
-    entry: ['./server/index'],
+    entry: [...entries, './server/index'],
     target: 'node',
     node: { __dirname: true },
+    watch: !env.production,
     externals: externals,
     output: {
       path: path.resolve(__dirname, '..', 'build'),
@@ -25,6 +27,8 @@ module.exports = (env, _argv) => {
       }],
     },
     stats: 'errors-only',
-    plugins: [],
+    plugins: [
+      new webpack.HotModuleReplacementPlugin(),
+    ],
   }
 }
