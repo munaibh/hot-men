@@ -2,6 +2,7 @@ const webpack = require('webpack')
 const path = require('path')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const nodeExternals = require('webpack-node-externals')
+const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin')
 
 module.exports = (env, _argv) => {
   const environment = env.production ? 'production' : 'development'
@@ -33,6 +34,11 @@ module.exports = (env, _argv) => {
     plugins: [
       new CleanWebpackPlugin(),
       new webpack.HotModuleReplacementPlugin(),
+      new FriendlyErrorsPlugin({
+        compilationSuccessInfo: {
+          messages: ['Ready to rock! http://localhost:8080'],
+        },
+      }),
     ],
   }
 }
