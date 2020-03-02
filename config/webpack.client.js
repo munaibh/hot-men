@@ -4,6 +4,7 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin')
 const ManifestPlugin = require('./plugins/ManifestPlugin')
+const ServiceWorkerPlugin = require('./plugins/ServiceWorkerPlugin')
 
 module.exports = (env, _argv) => {
   const environment = env.production ? 'production' : 'development'
@@ -40,6 +41,7 @@ module.exports = (env, _argv) => {
       new CleanWebpackPlugin({ cleanOnceBeforeBuildPatterns: ['**/*', ...cleanWhiteList] }),
       new MiniCssExtractPlugin({ filename: `styles/${filename}.css` }),
       new ManifestPlugin(),
+      new ServiceWorkerPlugin(),
       ...env.production ? []: [
         new webpack.HotModuleReplacementPlugin(),
         new FriendlyErrorsPlugin({
