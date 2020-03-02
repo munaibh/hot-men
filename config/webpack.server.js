@@ -9,7 +9,7 @@ module.exports = (env, argv) => {
   const environment = env.production ? 'production' : 'development'
   const entries = env.production ? [] : ['webpack/hot/poll?1000']
   const inspect = argv.includes('--inspect') ? ' --inspect' : ''
-  const scripts = [`node ${inspect} ./build/server.js`]
+  const scripts = [`node${inspect} ./build/server.js`]
   const externals = nodeExternals({ whitelist: entries })
 
   return {
