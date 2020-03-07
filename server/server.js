@@ -1,6 +1,7 @@
 import express from 'express'
 import path from 'path'
 import helpers from './helpers'
+import secure from './helpers/forceSecure'
 import compression  from 'compression'
 
 const app = express()
@@ -10,6 +11,7 @@ app.set('view engine', 'pug')
 app.use(express.static(path.join(__dirname, '..', 'public')))
 app.use(helpers)
 app.use(compression())
+app.use(secure)
 
 app.get('/', (req, res, next) => {
   res.render('index')
