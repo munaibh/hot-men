@@ -13,6 +13,7 @@
     "build:server": "webpack --config ./config/webpack.config.js --env.target=server"
   },
   "dependencies": {
+    "compression": "^1.7.4",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "pug": "^2.0.4"
