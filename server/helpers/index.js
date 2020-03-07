@@ -7,15 +7,8 @@ const tryCatch = (value, fallback)  => {
   catch(e) { return fallback }
 }
 
-const fetchTag = _ => {
-  const fallbackTag = '0.0.0-dev'
-  const execDescribe = _ => cp.execSync('git describe --tags --dirty --abbrev=0', {cwd: '.'})
-  const lastTag = tryCatch(execDescribe, fallbackTag).toString()
-  return lastTag.replace(/-/g, '_').trim()
-}
-
 const PugHelpers = function() {
-  const version = fetchTag()
+  const version = process.env.VERSION || 'unknown'
   const environment = process.env.NODE_ENV || 'development'
   
   let manifest = initialise()

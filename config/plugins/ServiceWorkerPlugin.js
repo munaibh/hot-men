@@ -1,11 +1,5 @@
 const path = require("path")
-const cp = require('child_process')
-
-const tryWithFallback = (callback, fallback)  => {
-  try { return callback() }
-  catch(e) { return fallback }
-}
-
+const version = require('./WebpackPluginUtils').version()
 module.exports = class ServiceWorkerPlugin {
   constructor({output, template} = {}) {
     this.pluginName = 'webpackServiceWorkerPlugin'
@@ -13,19 +7,16 @@ module.exports = class ServiceWorkerPlugin {
     this.output = output || 'service-worker.js'
   }
 
-  get tag() {
-    const fallbackTag = '0.0.0-dev'
-    const execDescribe = _ => cp.execSync('git describe --tags --dirty --abbrev=0', {cwd: '.'})
-    const lastTag = tryWithFallback(execDescribe, fallbackTag).toString()
-    return lastTag.replace(/-/g, '_').trim()
+  get cacheName() {
+    return JSON.stringify(`static-${version}`)
   }
 
   replace(compilation, path) {
     const data = require("fs").readFileSync(path, "utf8")
     const manifest = compilation.assets['manifest.json'].source()
     return data
-      .replace('$VERSION', this.tag)
-      .replace('$MANIFEST', manifest);
+      .replace('__VERSION__', this.cacheName)
+      .replace('__MANIFEST__', manifest);
   }
 
   apply(compiler) {

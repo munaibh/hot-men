@@ -1,2 +1,2 @@
-const staticCacheName = 'static-$VERSION'
-const staticCacheManifest = $MANIFEST
+const staticCacheName = __VERSION__
+const staticCacheManifest = __MANIFEST__

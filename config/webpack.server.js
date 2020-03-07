@@ -11,6 +11,7 @@ module.exports = (env, argv) => {
   const inspect = argv.includes('--inspect') ? ' --inspect' : ''
   const scripts = [`node${inspect} ./build/server.js`]
   const externals = nodeExternals({ whitelist: entries })
+  const version = require('./plugins/WebpackPluginUtils').version()
 
   return {
     mode: environment,
@@ -35,6 +36,7 @@ module.exports = (env, argv) => {
     },
     stats: 'errors-only',
     plugins: [
+      new webpack.EnvironmentPlugin({ VERSION: version }),
       new CleanWebpackPlugin(),
       ...env.production ? []: [
         new webpack.HotModuleReplacementPlugin(),
