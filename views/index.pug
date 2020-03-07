@@ -2,13 +2,24 @@
 html(lang="en" data-env=environment)
   head
     meta(charset="UTF-8")
-    meta(name="viewport", content="width=device-width, initial-scale=1.0")
     title Hot MEN
     meta(name="description" content="A Mongo Express Node HMR Boilerplate.")
-    meta(name="theme-color" content="#ffffff")
-    link(rel="icon", href="favicon.png", type="image/png")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    meta(name="environment", content=environment)
+    meta(name="version", content=version)
+    meta(name="mobile-web-app-capable", content="yes")
+    meta(name="apple-mobile-web-app-capable", content="yes")
+    meta(name="application-name", content="HMR")
+    meta(name="apple-mobile-web-app-title", content="HMR")
+    meta(name="theme-color", content="#000000")
+    meta(name="msapplication-navbutton-color", content="#000000")
+    meta(name="apple-mobile-web-app-status-bar-style", content="black-translucent")
+    meta(name="msapplication-starturl", content="/")
+
+    link(rel="manifest", href="web-manifest.json")
+    link(rel="icon", sizes="256x256", href="favicon.png", type="image/png")
+    link(rel="apple-touch-icon", sizes="256x256", href="favicon.png")
     link(rel="stylesheet", href=`${asset('/styles/main.css')}`)
-    script console.log("Environment: #{environment}\nVersion: #{version}")
 
   body
     h1 Hot MEN
