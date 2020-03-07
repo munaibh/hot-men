@@ -8,10 +8,9 @@ html(lang="en" data-env=environment)
     meta(name="theme-color" content="#ffffff")
     link(rel="icon", href="favicon.png", type="image/png")
     link(rel="stylesheet", href=`${asset('/styles/main.css')}`)
-    link(rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato" type="text/css")
     script console.log("Environment: #{environment}\nVersion: #{version}")
 
   body
     h1 Hot MEN
     h2= version
-    script(src=`${asset('/scripts/main.js')}`)
+    script(src=`${asset('/scripts/main.js')}`, defer)
