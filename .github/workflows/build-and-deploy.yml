@@ -25,13 +25,20 @@ jobs:
   deploy_to_dev:
     needs: build
     runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/master'
     steps:
       - uses: actions/checkout@v1
-      - name: Deploy to dev
-        run: |
-          git remote add heroku https://heroku:${{ secrets.HEROKU_API_KEY }}@git.heroku.com/${{ secrets.HEROKU_APP_DEVELOPMENT }}.git
-          git push heroku HEAD:master -f
+      - name: Login to Heroku Container registry
+        env: 
+          HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
+        run: heroku container:login 
+      - name: Build and push
+        env:
+          HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
+        run: heroku container:push -a ${{ secrets.HEROKU_APP_DEVELOPMENT }} web 
+      - name: Release to dev
+        env:
+          HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
+        run: heroku container:release -a ${{ secrets.HEROKU_APP_DEVELOPMENT }} web 
 
   deploy_to_stage:
     needs: build
