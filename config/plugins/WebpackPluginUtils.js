@@ -1,4 +1,5 @@
 const path = require('path')
+const cp = require('child_process');
 
 const PluginUtils = function()  {
   let cachedVersion
@@ -18,11 +19,11 @@ const PluginUtils = function()  {
     const fallbackTag = packageVersion()
     const execDescribe = _ => cp.execSync('git describe --tags --dirty --abbrev=0', {cwd: '.'})
     const lastTag = tryWithFallback(execDescribe, fallbackTag).toString()
-    return cachedVersion = lastTag.replace(/-/g, '_').trim()
+    cachedVersion = lastTag.replace(/-/g, '_').trim()
+    return cachedVersion
   }
 
-  return { tryWithFallback, version
-  }
+  return { tryWithFallback, version }
 }
 
 module.exports = PluginUtils()
