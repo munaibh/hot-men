@@ -38,6 +38,7 @@ module.exports = (env, _argv) => {
       }],
     },
     plugins: [
+      new webpack.DefinePlugin({ __DEV__: !env.production }),
       new CleanWebpackPlugin({ cleanOnceBeforeBuildPatterns: ['**/*', ...cleanWhiteList] }),
       new MiniCssExtractPlugin({ filename: `styles/${filename}.css` }),
       new ManifestPlugin(),

@@ -36,6 +36,7 @@ module.exports = (env, argv) => {
     },
     stats: 'errors-only',
     plugins: [
+      new webpack.DefinePlugin({ __DEV__: !env.production }),
       new webpack.EnvironmentPlugin({ VERSION: version }),
       new CleanWebpackPlugin(),
       ...env.production ? []: [
