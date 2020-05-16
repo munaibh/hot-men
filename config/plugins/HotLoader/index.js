@@ -37,8 +37,8 @@ const WebpackWatcher = function() {
   return {
     static: initStaticWatcher,
     client: initClientWatcher,
-    start: initWithDefaults,
+    watch: initWithDefaults,
   }
 }
 
-module.exports = WebpackWatcher()
+export default WebpackWatcher()

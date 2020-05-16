@@ -3,6 +3,7 @@ import path from 'path'
 import helpers from './helpers'
 import secure from './helpers/forceSecure'
 import compression  from 'compression'
+import HotLoader from '../config/plugins/HotLoader'
 
 const app = express()
 
@@ -17,10 +18,8 @@ app.get('/', (req, res, next) => {
   res.render('index')
 })
 
-if(process.env.NODE_ENV === 'development') {
-  const watcher = require('../config/plugins/HotLoader/watcher')
-  watcher.static()
-  watcher.client(app)
+if(__DEV__) {
+  HotLoader.watch(app)
 }
 
 export default app
