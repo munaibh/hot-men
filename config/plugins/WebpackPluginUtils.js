@@ -13,6 +13,13 @@ const PluginUtils = function()  {
     var packageJSON = require('../../package.json')
     return packageJSON.version || '0.0.0-dev'
   }
+
+  const flattenEntryPoints = (entrypoints) => {
+    return Object.keys(entrypoints).reduce((a, c) => {
+      if(Array.isArray(entrypoints[c])) return [...entrypoints[c], ...a]
+      return [entrypoints[c], ...a]
+    }, [])
+  }
   
   const version = () => {
     if(cachedVersion) return cachedVersion
@@ -23,7 +30,7 @@ const PluginUtils = function()  {
     return cachedVersion
   }
 
-  return { tryWithFallback, version }
+  return { tryWithFallback, flattenEntryPoints, version }
 }
 
 module.exports = PluginUtils()

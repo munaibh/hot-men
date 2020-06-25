@@ -1,5 +1,6 @@
 const webpack = require('webpack')
 const path = require('path')
+const { flattenEntryPoints } = require('./plugins/WebpackPluginUtils')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin')
@@ -13,9 +14,15 @@ module.exports = (env, _argv) => {
   const extract = { loader: MiniCssExtractPlugin.loader, options: { hmr: !env.production } }
   const cleanWhiteList = ['!offline.html', '!web-manifest.json', '!favicon.png']
 
+  const entrypoints = {
+    main: [...entries, './client/index' ],
+    critical: ['./client/styles/critical.sass'] ,
+    style: ['./client/styles/style.sass'],
+  }
+
   return {
     mode: environment,
-    entry: [...entries, './client/index' ],
+    entry: env.production ? entrypoints : flattenEntryPoints(entrypoints),
     output: {
       path: path.resolve(__dirname, '..', "public"),
       publicPath: '/',
