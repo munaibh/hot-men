@@ -12,6 +12,7 @@ module.exports = (env, argv) => {
   const scripts = [`node${inspect} ./build/server.js`]
   const externals = nodeExternals({ whitelist: entries })
   const version = require('./plugins/WebpackPluginUtils').version()
+  const PORT = process.env.APP_PORT || 8080
 
   return {
     mode: environment,
@@ -37,7 +38,7 @@ module.exports = (env, argv) => {
     stats: 'errors-only',
     plugins: [
       new webpack.DefinePlugin({ __DEV__: !env.production }),
-      new webpack.EnvironmentPlugin({ VERSION: version }),
+      new webpack.EnvironmentPlugin({ NODE_ENV: environment, VERSION: version }),
       new CleanWebpackPlugin(),
       ...env.production ? []: [
         new webpack.HotModuleReplacementPlugin(),
@@ -45,7 +46,7 @@ module.exports = (env, argv) => {
         new WebpackShellPlugin({ onBuildEnd: { scripts, parallel: true } }),
         new FriendlyErrorsPlugin({
           compilationSuccessInfo: {
-            messages: ['Ready to rock! http://localhost:8080'],
+            messages: [`Ready to rock! http://localhost:${PORT}`],
           },
         }),
       ],
