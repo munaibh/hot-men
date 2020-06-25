@@ -4,9 +4,9 @@
 </p>
 
 <p align="center">
-  <img src="https://img.shields.io/github/v/release/munaibh/hot-men" alt="version">
+  <img src="https://img.shields.io/github/release/munaibh/hot-men/all.svg" alt="version">
   <img src="https://img.shields.io/github/issues/munaibh/hot-men" alt="issues">
-  <img src="https://img.shields.io/badge/heroku-up-brightgreen.svg" alt="heroku">
+  <img src="https://heroku-shields.herokuapp.com/hot-men-prod" alt="heroku">
   <img src="https://img.shields.io/github/license/munaibh/hot-men.svg" alt="license">
 </p>
 
