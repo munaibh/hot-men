@@ -25,7 +25,7 @@ const PugHelpers = function() {
     if(inlineCache[assetPath]) return inlineCache[assetPath]
     const asset = manifest[assetPath] ? manifest[assetPath] : assetPath
     const filePath = path.join(__dirname, '..', '..', 'public', asset)
-    return inlineCache[assetPath] = tryCatch(fs.readFileSync(filePath, 'utf8'), '')
+    return inlineCache[assetPath] = tryCatch(fs.readFileSync(filePath, 'utf8').trim(), '')
   }
 
   function middleware(req, res, next) {
