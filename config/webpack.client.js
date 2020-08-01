@@ -13,6 +13,7 @@ module.exports = (env, _argv) => {
   const filename = env.production ? '[name].[contenthash:8]' : '[name]'
   const extract = { loader: MiniCssExtractPlugin.loader, options: { hmr: !env.production } }
   const cleanWhiteList = ['!offline.html', '!web-manifest.json', '!favicon.png']
+  const PORT = process.env.APP_PORT || 8080
 
   const entrypoints = {
     main: [...entries, './client/index' ],
@@ -54,7 +55,7 @@ module.exports = (env, _argv) => {
         new webpack.HotModuleReplacementPlugin(),
         new FriendlyErrorsPlugin({
           compilationSuccessInfo: {
-            messages: ['Ready to rock! http://localhost:8080'],
+            messages: [`Ready to rock! http://localhost:${PORT}`],
           },
         }),
       ],
