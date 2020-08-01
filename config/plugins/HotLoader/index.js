@@ -27,6 +27,8 @@ const WebpackWatcher = function() {
 
     instance.use(devMiddleWareInstance)
     instance.use(hotMiddleWareInstance)
+    
+    return compiler
   }
 
   const initWithDefaults = (instance) => {
