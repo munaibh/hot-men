@@ -4,8 +4,10 @@ import helpers from './helpers'
 import secure from './helpers/forceSecure'
 import compression  from 'compression'
 import HotLoader from '../config/plugins/HotLoader'
+import database from './lib/database'
 
 const app = express()
+const dbInstance = database.init()
 
 app.set('views', path.join(__dirname, '..', 'views'))
 app.set('view engine', 'pug')
