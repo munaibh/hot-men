@@ -109,6 +109,7 @@ dist
 
 # Build
 build/
+public/images
 public/scripts
 public/styles
 public/manifest.json
