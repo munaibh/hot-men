@@ -11,7 +11,6 @@ module.exports = (env, _argv) => {
   const environment = env.production ? 'production' : 'development'
   const entries = env.production ? [] : ['./config/plugins/HotLoader/subscribe']
   const filename = env.production ? '[name].[contenthash:8]' : '[name]'
-  const extract = { loader: MiniCssExtractPlugin.loader, options: { hmr: !env.production } }
   const cleanWhiteList = ['!offline.html', '!web-manifest.json', '!favicon.png']
   const PORT = process.env.APP_PORT || 8080
 
@@ -42,7 +41,11 @@ module.exports = (env, _argv) => {
         }]
       }, {
         test: /\.(sa|sc|c)ss$/,
-        use: [ extract, 'css-loader', 'sass-loader' ],
+        use: [ 
+          { loader: MiniCssExtractPlugin.loader, options: { hmr: !env.production } }, 
+          'css-loader', 
+          { loader: 'sass-loader', options: { prependData: `$env: "${environment}";`} }
+        ],
       }],
     },
     plugins: [
