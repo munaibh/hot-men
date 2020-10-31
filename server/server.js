@@ -17,13 +17,26 @@ app.use(helpers)
 app.use(compression())
 app.use(secure)
 
-app.get('/', (req, res, next) => {
+app.get('/', (_req, res, _next) => {
   res.render('index')
 })
 
-app.use((req, res, next) => {
-  res.status(404)
-  res.send('404: File Not Found')
+app.use((_req, _res, next) => {
+  const err = new Error('Not Found')
+  err.status = 404
+  next(err)
+})
+
+app.use((err, _req, res, _next) => {
+  const { status = 500, stack = '', message } = err
+  const highlighted = stack.replace(/[a-z_-\d]+.js:\d+:\d+/gi, '<mark>$&</mark>')
+  const details = { message, status, stack: { raw: stack, highlighted } }
+
+  res.status(status)
+  res.format({
+    'text/html': () => res.render('error', details),
+    'application/json': () => res.json(details)
+  })
 })
 
 export default app
