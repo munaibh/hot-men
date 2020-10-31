@@ -12,7 +12,6 @@ module.exports = (env, _argv) => {
   const entries = env.production ? [] : ['./config/plugins/HotLoader/subscribe']
   const filename = env.production ? '[name].[contenthash:8]' : '[name]'
   const cleanWhiteList = ['!offline.html', '!web-manifest.json', '!favicon.png']
-  const PORT = process.env.APP_PORT || 8080
 
   const entrypoints = {
     main: [...entries, './client/index' ],
@@ -56,11 +55,7 @@ module.exports = (env, _argv) => {
       new ServiceWorkerPlugin(),
       ...env.production ? []: [
         new webpack.HotModuleReplacementPlugin(),
-        new FriendlyErrorsPlugin({
-          compilationSuccessInfo: {
-            messages: [`Ready to rock! http://localhost:${PORT}`],
-          },
-        }),
+        new FriendlyErrorsPlugin(),
       ],
     ]
   }
