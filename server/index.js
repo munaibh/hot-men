@@ -1,5 +1,5 @@
 const http = require('http')
-const dotenv = require('dotenv').config()
+const _dotenv = require('dotenv').config()
 const PORT = process.env.PORT || 8080
 
 let currentApp = require('./server').default

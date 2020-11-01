@@ -1,6 +1,10 @@
 import mongoose from 'mongoose'
 
-const MongoConnector = function() {
+/**
+ * Handle and expose Mongoose connection method (read environment variables).
+ * @public
+ */
+const MongooseConnector = _ => {
   const { MONGO_USERNAME, MONGO_PASSWORD, MONGO_DB, MONGO_URI } = process.env
 
   const resolveConnectionUrl = _ => {
@@ -10,16 +14,16 @@ const MongoConnector = function() {
       : MONGO_URI 
   }
 
-  const init = () => {
+  const connect = _ => {
     const connectionUrl = resolveConnectionUrl()
     const options = { useNewUrlParser: true, useUnifiedTopology: true, }
-    if(!connectionUrl) return
+    if(!connectionUrl) return console.log("\x1b[45m I \x1b[49m", 'Skipping db, no connection config.')
     mongoose.connect(connectionUrl, options)
       .then(_ => console.log('MongoDB is connected!'))
       .catch(_ => console.log('MongoDB failed to connect!'))
   }
 
-  return { init }
+  return { connect }
 }
 
-export default MongoConnector()
+export default MongooseConnector()
