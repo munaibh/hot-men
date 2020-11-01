@@ -27,6 +27,14 @@ module.exports = (env, _argv) => {
       publicPath: '/',
       filename: `scripts/${filename}.js`,
     },
+    resolve: {
+      alias: {
+        '@config': path.resolve(process.cwd(), 'config'),
+        '@client': path.resolve(process.cwd(), 'client'),
+        '@public': path.resolve(process.cwd(), 'public'),
+        '@server': path.resolve(process.cwd(), 'server'),
+      }
+    },
     module: {
       rules: [{
         test: /\.js?$/,
