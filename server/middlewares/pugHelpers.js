@@ -12,6 +12,7 @@ const PugEngineMiddleware = _ => {
   return (_req, res, next) => {
     res.locals.version = version
     res.locals.environment = environment
+    res.locals.pretty = __DEV__
     res.locals.inline = fetchAssetContents(manifest)
     res.locals.asset = fetchAssetPath(manifest)
     next()
