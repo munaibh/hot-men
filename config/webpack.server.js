@@ -20,6 +20,7 @@ module.exports = (env, argv) => {
     target: 'node',
     node: { __dirname: true },
     watch: !env.production,
+    watchOptions: { ignored: path.resolve(__dirname) },
     externals: externals,
     output: {
       path: path.resolve(__dirname, '..', 'build'),
