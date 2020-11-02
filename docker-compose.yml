@@ -3,18 +3,11 @@ version: '3'
 services:
   nodejs:
     build: .
-    container_name: nodejs
     command: npm run serve
     restart: unless-stopped
     env_file: .env
-    environment:
-      - MONGO_USERNAME=$MONGO_USERNAME
-      - MONGO_PASSWORD=$MONGO_PASSWORD
-      - MONGO_DB=$MONGO_DB
-      - MONGO_URI=$MONGO_URI
-      - PORT=$PORT
     ports:
-      - "${PORT:-80}:8080"
+      - "${PORT:-80}:${PORT:-80}"
     volumes:
       - .:/usr/src/app
       - /usr/src/app/node_modules
