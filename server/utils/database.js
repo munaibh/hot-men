@@ -17,10 +17,10 @@ const MongooseConnector = _ => {
   const connect = _ => {
     const connectionUrl = resolveConnectionUrl()
     const options = { useNewUrlParser: true, useUnifiedTopology: true, }
-    if(!connectionUrl) return console.log("\x1b[45m I \x1b[49m", 'Skipping db, no connection config.')
+    if(!connectionUrl) return console.log('\x1b[45m I \x1b[49m', 'MongoDB: Skipped (No Config)')
     mongoose.connect(connectionUrl, options)
-      .then(_ => console.log('MongoDB is connected!'))
-      .catch(_ => console.log('MongoDB failed to connect!'))
+      .then(_ => console.log('\x1b[45m I \x1b[49m', 'MongoDB: Successfully connected'))
+      .catch(_ => console.log('\x1b[45m I \x1b[49m', 'MongoDB: Failed to connect'))
   }
 
   return { connect }
