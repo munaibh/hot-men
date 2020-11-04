@@ -1,5 +1,6 @@
 const webpack = require('webpack')
 const path = require('path')
+const ESLintPlugin = require('eslint-webpack-plugin')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const nodeExternals = require('webpack-node-externals')
 const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin')
@@ -45,6 +46,7 @@ module.exports = (env, argv) => {
     },
     stats: 'errors-only',
     plugins: [
+      new ESLintPlugin({ context: path.resolve(process.cwd(), 'server') }),
       new webpack.DefinePlugin({ __DEV__: !env.production }),
       new webpack.EnvironmentPlugin({ NODE_ENV: environment, VERSION: version }),
       new CleanWebpackPlugin(),

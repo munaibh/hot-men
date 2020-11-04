@@ -1,5 +1,6 @@
 const webpack = require('webpack')
 const path = require('path')
+const ESLintPlugin = require('eslint-webpack-plugin')
 const { flattenEntryPoints } = require('./plugins/WebpackPluginUtils')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
@@ -56,6 +57,7 @@ module.exports = (env, _argv) => {
       }],
     },
     plugins: [
+      new ESLintPlugin({ context: path.resolve(process.cwd(), 'client') }),
       new webpack.DefinePlugin({ __DEV__: !env.production }),
       new CleanWebpackPlugin({ cleanOnceBeforeBuildPatterns: ['**/*', ...cleanWhiteList] }),
       new MiniCssExtractPlugin({ filename: `styles/${filename}.css` }),
