@@ -16,11 +16,11 @@ const MongooseConnector = _ => {
 
   const connect = _ => {
     const connectionUrl = resolveConnectionUrl()
-    const options = { useNewUrlParser: true, useUnifiedTopology: true, }
-    if(!connectionUrl) return console.log('\x1b[45m I \x1b[49m', 'MongoDB: Skipped (No Config)')
+    const options = { useNewUrlParser: true, useUnifiedTopology: true }
+    if(!connectionUrl) return console.info('\x1b[45m I \x1b[49m', 'MongoDB: Skipped (No Config)')
     mongoose.connect(connectionUrl, options)
-      .then(_ => console.log('\x1b[45m I \x1b[49m', 'MongoDB: Successfully connected'))
-      .catch(_ => console.log('\x1b[45m I \x1b[49m', 'MongoDB: Failed to connect'))
+      .then(_ => console.info('\x1b[45m I \x1b[49m', 'MongoDB: Successfully connected'))
+      .catch(_ => console.info('\x1b[45m I \x1b[49m', 'MongoDB: Failed to connect'))
   }
 
   return { connect }

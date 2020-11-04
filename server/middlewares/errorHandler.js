@@ -8,13 +8,13 @@ exports.handler = (err, _req, res, _next) => {
   const details = { message, status, stack: { raw: stack, highlighted } }
 
   if (!__DEV__) {
-		delete details.stack;
-	}
+    delete details.stack
+  }
 
   res.status(status)
   res.format({
     'text/html': () => res.render('error', details),
-    'application/json': () => res.json(details)
+    'application/json': () => res.json(details),
   })
 }
 
