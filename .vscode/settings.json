@@ -2,6 +2,7 @@
   "files.exclude": {
     "**/.git*": true,
     "**/.docker*": true,
+    "**/.eslintrc": true,
     "**/.babelrc": true,
     "**/.npmrc": true,
     "**/config": true,
