@@ -5,6 +5,7 @@
   "main": "build/server.js",
   "scripts": {
     "start": "node build/server.js",
+    "test": "echo \"Error: No unit tests specified \"",
     "serve": "npm run build:server",
     "debug": "npm run build:server -- --inspect",
     "clean": "rimraf public/scripts public/images public/styles public/manifest.json public/service-worker.js",
