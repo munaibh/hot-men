@@ -1,8 +1,8 @@
-name: Build and Deploy
+name: Deploy to Heroku
 
 on: 
   workflow_run:
-    workflows: ["Build and Test"]
+    workflows: ['Build and Test']
     types: 
       - completed
 
