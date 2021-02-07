@@ -10,8 +10,8 @@
     "debug": "npm run build:server -- --inspect",
     "clean": "rimraf public/scripts public/images public/styles public/manifest.json public/service-worker.js",
     "build": "npm-run-all --parallel 'build:* -- --env.production'",
-    "build:client": "webpack --config ./config/webpack.config.js --env.target=client",
-    "build:server": "webpack --config ./config/webpack.config.js --env.target=server"
+    "build:client": "webpack --config ./build-utils/webpack.config.js --env.target=client",
+    "build:server": "webpack --config ./build-utils/webpack.config.js --env.target=server"
   },
   "dependencies": {
     "compression": "^1.7.4",

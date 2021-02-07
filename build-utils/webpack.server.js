@@ -12,7 +12,7 @@ module.exports = (env, argv) => {
   const inspect = argv.includes('--inspect') ? ' --inspect' : ''
   const scripts = [`node${inspect} ./build/server.js`]
   const externals = nodeExternals({ whitelist: entries })
-  const version = require('./plugins/WebpackPluginUtils').version()
+  const version = require('./webpack-plugins/webpack-plugin-utils').version()
 
   return {
     mode: environment,

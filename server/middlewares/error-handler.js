@@ -2,6 +2,7 @@
  * Error handler. Send stacktrace only during development.
  * @public
  */
+
 exports.handler = (err, _req, res, _next) => {
   const { status = 500, stack = '', message } = err
   const highlighted = stack.replace(/[a-z_-\d]+.js:\d+:\d+/gi, '<mark>$&</mark>')

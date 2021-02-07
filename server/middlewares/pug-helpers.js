@@ -4,6 +4,7 @@ import { parseManifestAsJson, fetchAssetContents, fetchAssetPath } from '@server
  * Pug middleware to make useful functions and utils accessible.
  * @public
  */
+
 const PugEngineMiddleware = _ => {
   const version = process.env.VERSION || '???'
   const environment = process.env.NODE_ENV || 'development'

@@ -1,10 +1,10 @@
 import express from 'express'
 import path from 'path'
 import compression  from 'compression'
-import pugHelpers from './middlewares/pugHelpers'
-import forceSecure from './middlewares/forceSecure'
-import hotLoader from '../config/plugins/HotLoader'
-import errors from './middlewares/errorHandler'
+import pugHelpers from './middlewares/pug-helpers'
+import forceSecure from './middlewares/force-secure'
+import hotLoader from '../build-utils/webpack-plugins/hot-loader'
+import errors from './middlewares/error-handler'
 import database from './utils/database'
 
 const app = express()

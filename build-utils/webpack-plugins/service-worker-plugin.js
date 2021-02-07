@@ -1,5 +1,6 @@
 const path = require("path")
-const version = require('./WebpackPluginUtils').version()
+const version = require('./webpack-plugin-utils').version()
+
 module.exports = class ServiceWorkerPlugin {
   constructor({output, template} = {}) {
     this.pluginName = 'webpackServiceWorkerPlugin'

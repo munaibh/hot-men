@@ -1,16 +1,16 @@
 const webpack = require('webpack')
 const path = require('path')
 const ESLintPlugin = require('eslint-webpack-plugin')
-const { flattenEntryPoints } = require('./plugins/WebpackPluginUtils')
+const { flattenEntryPoints } = require('./webpack-plugins/webpack-plugin-utils')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin')
-const ManifestPlugin = require('./plugins/ManifestPlugin')
-const ServiceWorkerPlugin = require('./plugins/ServiceWorkerPlugin')
+const ManifestPlugin = require('./webpack-plugins/manifest-plugin')
+const ServiceWorkerPlugin = require('./webpack-plugins/service-worker-plugin')
 
 module.exports = (env, _argv) => {
   const environment = env.production ? 'production' : 'development'
-  const entries = env.production ? [] : ['./config/plugins/HotLoader/subscribe']
+  const entries = env.production ? [] : ['./build-utils/webpack-plugins/hot-loader/subscribe']
   const filename = env.production ? '[name].[contenthash:8]' : '[name]'
   const cleanWhiteList = ['!offline.html', '!web-manifest.json', '!favicon.png']
 

@@ -4,6 +4,7 @@ import mongoose from 'mongoose'
  * Handle and expose Mongoose connection method (read environment variables).
  * @public
  */
+
 const MongooseConnector = _ => {
   const { MONGO_USERNAME, MONGO_PASSWORD, MONGO_DB, MONGO_URI } = process.env
 
