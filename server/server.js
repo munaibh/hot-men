@@ -1,6 +1,7 @@
 import express from 'express'
 import path from 'path'
 import compression  from 'compression'
+import morgan from 'morgan'
 import templateEgine from './middlewares/template'
 import forceSecure from './middlewares/forceSecure'
 import hotLoader from '../build-utils/webpack-plugins/hot-loader'
@@ -17,6 +18,7 @@ app.use(express.static(path.join(__dirname, '..', 'public')))
 app.use(templateEgine())
 app.use(compression())
 app.use(forceSecure)
+app.use(morgan('tiny'))
 
 app.use('/', require('./routes').default)
 
