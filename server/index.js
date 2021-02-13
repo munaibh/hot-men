@@ -1,10 +1,9 @@
-const http = require('http')
-const _dotenv = require('dotenv').config()
-const PORT = process.env.PORT || 8080
+import http from 'http'
+import { port } from './config'
 
 let currentApp = require('./server').default
-let server = http.createServer(currentApp).listen(PORT, function () {
-  const message = `Ready to rock! http://localhost:${PORT}`
+let server = http.createServer(currentApp).listen(port, function () {
+  const message = `Ready to rock! http://localhost:${port}`
   console.info('\x1b[45m I \x1b[49m', message)
 })
 
